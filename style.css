@@ -1,4 +1,4 @@
-/* ========== GLOBAL RESET ========== */
+/* RESET & GLOBAL */
 * {
   margin: 0;
   padding: 0;
@@ -14,12 +14,12 @@ body {
   background: linear-gradient(to bottom right, #001F3F, #0074D9);
   color: white;
   text-align: center;
-  height: 100%;
   overflow: hidden;
+  height: 100%;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* ========== DYNAMIC HEIGHT FIX ========== */
+/* FIX DYNAMIC HEIGHT */
 .game-container {
   display: flex;
   flex-direction: column;
@@ -28,9 +28,9 @@ body {
   padding: 1rem;
 }
 
-/* ========== SECTIONS ========== */
+/* SECTIONS */
 .side {
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .computer {
@@ -48,31 +48,32 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
-/* ========== COUNTDOWN & RESULT ========== */
+/* COUNTDOWN + RESULT */
 #countdown {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: bold;
   animation: pulse 1s infinite;
 }
 
 #result {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #ffe600;
   font-weight: bold;
   margin: 0.8rem 0;
 }
 
-/* ========== SCORE & BUTTON ========== */
+/* SCORE + BUTTON */
 .scoreboard {
   font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 #start-btn {
   font-size: 1rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.6rem 1.4rem;
   background-color: #ff4136;
   color: white;
   border: none;
@@ -84,12 +85,12 @@ body {
   background-color: #ff6347;
 }
 
-/* ========== BUTTON CHOICES ========== */
+/* PLAYER CHOICE BUTTONS */
 .buttons {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
   flex-wrap: wrap;
+  gap: 0.6rem;
 }
 
 .buttons button {
@@ -105,13 +106,13 @@ body {
   background-color: #ffffff55;
 }
 
-/* ========== BATTLE SCENE SIDE-BY-SIDE ========== */
+/* ======= FIXED: BATTLE SIDE-BY-SIDE ======= */
 .battle-scene {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
   align-items: center;
-  gap: 2rem;
-  margin: 1rem 0;
+  justify-content: space-evenly;
+  margin: 0.8rem 0;
   animation: zoomIn 0.5s ease-out;
   flex-wrap: nowrap;
 }
@@ -120,13 +121,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex: 1 1 0;
+  width: 35%;
 }
 
 .fighter img {
-  width: 5rem;
-  height: 5rem;
-  border-radius: 0.75rem;
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 0.5rem;
   border: 0.2rem solid white;
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 0.6rem #fff;
@@ -141,18 +142,19 @@ body {
 }
 
 .vs {
-  font-size: 2rem;
-  color: #ffe600;
+  font-size: 1.4rem;
   font-weight: bold;
+  color: #ffe600;
   animation: flash 1s infinite;
+  width: 20%;
 }
 
-/* ========== HIDDEN UTILITY ========== */
+/* HIDDEN STATE */
 .hidden {
   display: none;
 }
 
-/* ========== ANIMATIONS ========== */
+/* ANIMATIONS */
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.1); opacity: 0.7; }
@@ -168,26 +170,35 @@ body {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* ========== MEDIA QUERIES ========== */
+/* MOBILE RESPONSIVE */
 @media (max-width: 480px) {
   html {
     font-size: 14px;
   }
 
-  .battle-scene {
-    gap: 1rem;
-  }
-
   .fighter img {
-    width: 4rem;
-    height: 4rem;
+    width: 4.5rem;
+    height: 4.5rem;
   }
 
-  .label, .vs {
+  .vs {
+    font-size: 1.2rem;
+  }
+
+  .label {
     font-size: 0.9rem;
+  }
+
+  #countdown {
+    font-size: 2rem;
   }
 
   #result {
     font-size: 1.1rem;
+  }
+
+  #start-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 }

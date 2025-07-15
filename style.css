@@ -16,6 +16,7 @@ body {
   text-align: center;
   overflow: hidden;
   height: 100%;
+  touch-action: manipulation; /* Ensures tap behavior stays smooth */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
@@ -201,4 +202,14 @@ body {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
+}
+
+/* Disable text/image selection globally */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+  touch-action: manipulation; /* Prevent double-tap zoom on buttons */
 }

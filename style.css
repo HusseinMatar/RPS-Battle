@@ -1,3 +1,4 @@
+/* Force body to be full screen without scroll */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
@@ -5,14 +6,17 @@ body {
   color: white;
   text-align: center;
   overflow: hidden;
+  height: 100dvh; /* ✅ use dynamic viewport height */
 }
 
+/* Fill the entire screen and allow dynamic sizing */
 .game-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .side {

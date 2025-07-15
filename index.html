@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RPS Battle</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="game-container">
+
+    <!-- COMPUTER SIDE -->
+    <div class="side computer">
+      <h2>🖥️ COMPUTER</h2>
+      <p id="computer-choice-label">Waiting...</p>
+    </div>
+
+    <!-- CENTER ARENA -->
+    <div class="center">
+      <div id="countdown">Ready?</div>
+
+      <!-- Battle Display -->
+<!-- Battle Display -->
+<div id="battle-scene" class="battle-scene hidden">
+  <div class="fighter">
+    <p class="label">YOU</p>
+    <img id="player-img" src="" alt="Player Choice">
+  </div>
+  <div class="vs">VS</div>
+  <div class="fighter">
+    <p class="label">CPU</p>
+    <img id="cpu-img" src="" alt="Computer Choice">
+  </div>
+</div>
+
+      <div id="result">Click "Start Battle"!</div>
+
+      <div class="scoreboard">
+        <p>👤 You: <span id="player-score">0</span></p>
+        <p>🖥️ CPU: <span id="computer-score">0</span></p>
+      </div>
+
+      <button onclick="startRound()" id="start-btn">⚔️ Start Battle</button>
+    </div>
+
+    <!-- PLAYER SIDE -->
+    <div class="side player">
+      <h2>🧍 YOU</h2>
+      <div class="buttons">
+        <button onclick="makeChoice('rock')" id="rock-btn">🪨</button>
+        <button onclick="makeChoice('paper')" id="paper-btn">📄</button>
+        <button onclick="makeChoice('scissors')" id="scissors-btn">✂️</button>
+      </div>
+      <p id="player-choice-label">Pick your move...</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

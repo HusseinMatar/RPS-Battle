@@ -139,3 +139,17 @@ function resetHistory() {
   localStorage.removeItem('rpsHistory');
   console.log('🧹 History cleared.');
 }
+
+// ✅ Preload images on page load
+function preloadImages() {
+  const images = ['img/rock.png', 'img/paper.png', 'img/scissors.png'];
+  images.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+}
+
+window.onload = function () {
+  preloadImages();
+  loadHistoryStats(); // If you want to load stats on start
+};

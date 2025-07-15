@@ -153,3 +153,11 @@ window.onload = function () {
   preloadImages();
   loadHistoryStats(); // If you want to load stats on start
 };
+
+// Fix viewport height on iOS and mobile browsers
+function setTrueVH() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+window.addEventListener('load', setTrueVH);
+window.addEventListener('resize', setTrueVH);

@@ -1,110 +1,139 @@
-/* Force body to be full screen without scroll */
-body {
+/* ============ GLOBAL RESET ============ */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px; /* default, adjusts below */
+}
+
+body {
   font-family: 'Segoe UI', sans-serif;
   background: linear-gradient(to bottom right, #001F3F, #0074D9);
   color: white;
   text-align: center;
+  height: 100%;
   overflow: hidden;
-  height: 100dvh; /* ✅ use dynamic viewport height */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* Fill the entire screen and allow dynamic sizing */
+/* ============ DYNAMIC HEIGHT FIX ============ */
 .game-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   justify-content: space-between;
-  padding: 10px;
-  box-sizing: border-box;
+  padding: 1rem;
 }
 
+/* ============ TOP & BOTTOM ZONES ============ */
 .side {
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 .computer {
   background: rgba(255, 255, 255, 0.05);
-  border-bottom: 2px solid #00c0ff;
+  border-bottom: 0.15rem solid #00c0ff;
 }
 
 .player {
   background: rgba(255, 255, 255, 0.05);
-  border-top: 2px solid #2ecc40;
+  border-top: 0.15rem solid #2ecc40;
 }
 
+/* ============ CENTER ZONE ============ */
 .center {
-  padding: 20px;
+  padding: 1rem;
 }
 
 #countdown {
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 0.8rem;
   animation: pulse 1s infinite;
 }
 
 #result {
-  font-size: 24px;
+  font-size: 1.5rem;
   color: #ffe600;
   font-weight: bold;
-  margin: 15px 0;
+  margin: 1rem 0;
 }
 
 .scoreboard {
-  font-size: 18px;
-  margin: 10px 0;
+  font-size: 1.1rem;
+  margin: 0.8rem 0;
 }
 
 #start-btn {
-  font-size: 20px;
-  padding: 10px 20px;
+  font-size: 1.25rem;
+  padding: 0.75rem 1.5rem;
   background-color: #ff4136;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 #start-btn:hover {
   background-color: #ff6347;
 }
 
+/* ============ BUTTONS ============ */
 .buttons button {
-  font-size: 28px;
-  padding: 12px 24px;
-  margin: 10px;
+  font-size: 1.75rem;
+  padding: 0.8rem 1.2rem;
+  margin: 0.5rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 0.6rem;
   background-color: #ffffff22;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .buttons button:hover {
   background-color: #ffffff55;
 }
 
-/* BATTLE SCENE */
+/* ============ BATTLE SCENE ============ */
 .battle-scene {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
-  margin: 20px 0;
+  gap: 2.5rem;
+  margin: 1.2rem 0;
   animation: zoomIn 0.5s ease-out;
+  flex-wrap: wrap;
+}
+
+.fighter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .fighter img {
-  width: 100px;
-  height: 100px;
-  border-radius: 12px;
-  border: 3px solid white;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 0.75rem;
+  border: 0.2rem solid white;
   background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 10px #fff;
+  box-shadow: 0 0 0.6rem #fff;
+}
+
+.label {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #ffe600;
+  text-transform: uppercase;
 }
 
 .vs {
-  font-size: 36px;
+  font-size: 2.5rem;
   color: #ffe600;
   font-weight: bold;
   animation: flash 1s infinite;
@@ -114,6 +143,7 @@ body {
   display: none;
 }
 
+/* ============ ANIMATIONS ============ */
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.1); opacity: 0.7; }
@@ -129,95 +159,65 @@ body {
   to { transform: scale(1); opacity: 1; }
 }
 
-.label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 8px;
-  color: #ffe600;
-  text-transform: uppercase;
-}
+/* ============ MEDIA QUERIES ============ */
 
-/* ==========================
-   📱 Small screens (phones)
-   ========================== */
+/* Phones */
 @media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+
   .battle-scene {
     flex-direction: column;
-    gap: 20px;
+    gap: 1.5rem;
   }
 
   .fighter img {
-    width: 80px;
-    height: 80px;
+    width: 5.5rem;
+    height: 5.5rem;
   }
 
   .vs {
-    font-size: 28px;
+    font-size: 2rem;
   }
 
   .label {
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   #countdown {
-    font-size: 36px;
+    font-size: 2.5rem;
   }
 
   #result {
-    font-size: 18px;
-    margin: 10px 0;
-  }
-
-  .scoreboard {
-    font-size: 16px;
-  }
-
-  #start-btn {
-    font-size: 18px;
-    padding: 8px 16px;
-  }
-
-  .buttons button {
-    font-size: 24px;
-    padding: 10px 20px;
+    font-size: 1.2rem;
   }
 }
 
-/* ==========================
-   📱📱 Medium screens (tablets)
-   ========================== */
+/* Tablets */
 @media (min-width: 481px) and (max-width: 768px) {
-  .battle-scene {
-    gap: 30px;
+  html {
+    font-size: 15px;
   }
 
   .fighter img {
-    width: 90px;
-    height: 90px;
+    width: 5.8rem;
+    height: 5.8rem;
   }
 
   .vs {
-    font-size: 32px;
+    font-size: 2.2rem;
   }
 
   .label {
-    font-size: 17px;
+    font-size: 1.05rem;
   }
 
   #countdown {
-    font-size: 42px;
+    font-size: 2.75rem;
   }
 
   #result {
-    font-size: 20px;
-  }
-
-  .buttons button {
-    font-size: 26px;
-    padding: 10px 20px;
-  }
-
-  #start-btn {
-    font-size: 18px;
+    font-size: 1.3rem;
   }
 }

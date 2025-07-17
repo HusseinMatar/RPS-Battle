@@ -4,17 +4,16 @@ let countdownTime = 3;
 let countdownInterval;
 let playerChoice = null;
 
-// Images for each choice
+// Image mapping for player and CPU choices
 const imageMap = {
   rock: 'img/rock.png',
   paper: 'img/paper.png',
   scissors: 'img/scissors.png'
 };
 
-// Called when user clicks "Start Battle"
+// Starts a new round
 function startRound() {
-  // ✅ Prevent multiple timers
-  clearInterval(countdownInterval);
+  clearInterval(countdownInterval); // Prevent duplicate timers
 
   playerChoice = null;
   countdownTime = 3;
@@ -30,11 +29,13 @@ function startRound() {
 
   countdownInterval = setInterval(() => {
     countdownTime--;
-if (countdownTime > 0) {
-  document.getElementById('countdown').textContent = countdownTime;
-} else {
-  document.getElementById('countdown').textContent = ''; // 👈 Hide it
-}
+
+    if (countdownTime > 0) {
+      document.getElementById('countdown').textContent = countdownTime;
+    } else {
+      document.getElementById('countdown').textContent = ''; // Hide countdown
+    }
+
     if (countdownTime === 0) {
       clearInterval(countdownInterval);
       enableButtons(false);
@@ -51,7 +52,7 @@ if (countdownTime > 0) {
   }, 1000);
 }
 
-// Called when player clicks Rock/Paper/Scissors
+// Called when player makes a choice
 function makeChoice(choice) {
   if (countdownTime > 0 && !playerChoice) {
     playerChoice = choice;
@@ -59,20 +60,19 @@ function makeChoice(choice) {
   }
 }
 
-// Core battle logic
+// Core game logic
 function playBattle(playerChoice) {
   const choices = ['rock', 'paper', 'scissors'];
-  const computerChoice = choices[Math.floor(Math.random() * 3)];
+  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
   // Show computer choice
   document.getElementById('computer-choice-label').textContent = `CPU chose: ${computerChoice.toUpperCase()}`;
 
-  // Show battle images
+  // Display images
   document.getElementById('player-img').src = imageMap[playerChoice];
   document.getElementById('cpu-img').src = imageMap[computerChoice];
   document.getElementById('battle-scene').classList.remove('hidden');
 
-  // Determine result
   let resultText = '';
   let outcome = '';
 
@@ -98,22 +98,22 @@ function playBattle(playerChoice) {
   saveGameResult(outcome);
 }
 
-// Update score on UI
+// Updates score display
 function updateScores() {
   document.getElementById('player-score').textContent = playerScore;
   document.getElementById('computer-score').textContent = computerScore;
 }
 
-// Enable or disable choice buttons
+// Enable/disable choice buttons
 function enableButtons(enable) {
   document.getElementById('rock-btn').disabled = !enable;
   document.getElementById('paper-btn').disabled = !enable;
   document.getElementById('scissors-btn').disabled = !enable;
 }
 
-// Save result to localStorage
+// Save game result to localStorage
 function saveGameResult(result) {
-  let history = JSON.parse(localStorage.getItem('rpsHistory')) || [];
+  const history = JSON.parse(localStorage.getItem('rpsHistory')) || [];
 
   history.push({
     result: result, // win | lose | draw
@@ -123,7 +123,7 @@ function saveGameResult(result) {
   localStorage.setItem('rpsHistory', JSON.stringify(history));
 }
 
-// OPTIONAL: Load stats (for use later)
+// Load and display stats in console
 function loadHistoryStats() {
   const history = JSON.parse(localStorage.getItem('rpsHistory')) || [];
 
@@ -134,30 +134,22 @@ function loadHistoryStats() {
   console.log(`📊 Stats — Played: ${history.length}, Wins: ${wins}, Losses: ${losses}, Draws: ${draws}`);
 }
 
-// OPTIONAL: Reset all stored history
+// Clear stored game history
 function resetHistory() {
   localStorage.removeItem('rpsHistory');
   console.log('🧹 History cleared.');
 }
 
-// ✅ Preload images on page load
-function preloadImages() {
-  const images = ['img/rock.png', 'img/paper.png', 'img/scissors.png'];
-  images.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-}
-
-window.onload = function () {
-  preloadImages();
-  loadHistoryStats(); // If you want to load stats on start
-};
-
-// Fix viewport height on iOS and mobile browsers
+// Fix viewport height issues on mobile
 function setTrueVH() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
+
+// Initialize on load
+window.onload = function () {
+  loadHistoryStats();
+};
+
 window.addEventListener('load', setTrueVH);
 window.addEventListener('resize', setTrueVH);

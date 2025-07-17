@@ -2,7 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />  <title>RPS Battle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>RPS Battle</title>
+
+  <!-- ✅ Preload game images -->
+  <link rel="preload" href="img/rock.png" as="image">
+  <link rel="preload" href="img/paper.png" as="image">
+  <link rel="preload" href="img/scissors.png" as="image">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,18 +25,18 @@
     <div class="center">
       <div id="countdown">Ready?</div>
 
-<!-- Battle Display -->
-<div id="battle-scene" class="battle-scene hidden">
-  <div class="fighter">
-    <p class="label">YOU</p>
-    <img id="player-img" src="" alt="Player Choice">
-  </div>
-  <div class="vs">VS</div>
-  <div class="fighter">
-    <p class="label">CPU</p>
-    <img id="cpu-img" src="" alt="Computer Choice">
-  </div>
-</div>
+      <!-- Battle Display -->
+      <div id="battle-scene" class="battle-scene hidden">
+        <div class="fighter">
+          <p class="label">YOU</p>
+          <img id="player-img" src="" alt="Player Choice" />
+        </div>
+        <div class="vs">VS</div>
+        <div class="fighter">
+          <p class="label">CPU</p>
+          <img id="cpu-img" src="" alt="Computer Choice" />
+        </div>
+      </div>
 
       <div id="result">Click "Start Battle"!</div>
 

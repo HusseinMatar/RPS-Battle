@@ -4,16 +4,16 @@ let countdownTime = 3;
 let countdownInterval;
 let playerChoice = null;
 
-// Image mapping for player and CPU choices
+// Image paths for player and CPU choices
 const imageMap = {
   rock: 'img/rock.png',
   paper: 'img/paper.png',
   scissors: 'img/scissors.png'
 };
 
-// Starts a new round
+// Start a new round
 function startRound() {
-  clearInterval(countdownInterval); // Prevent duplicate timers
+  clearInterval(countdownInterval); // Prevent multiple timers
 
   playerChoice = null;
   countdownTime = 3;
@@ -30,12 +30,14 @@ function startRound() {
   countdownInterval = setInterval(() => {
     countdownTime--;
 
+    // Update countdown display
     if (countdownTime > 0) {
       document.getElementById('countdown').textContent = countdownTime;
     } else {
-      document.getElementById('countdown').textContent = ''; // Hide countdown
+      document.getElementById('countdown').textContent = '';
     }
 
+    // Handle end of countdown
     if (countdownTime === 0) {
       clearInterval(countdownInterval);
       enableButtons(false);
@@ -52,7 +54,7 @@ function startRound() {
   }, 1000);
 }
 
-// Called when player makes a choice
+// When the player makes a choice
 function makeChoice(choice) {
   if (countdownTime > 0 && !playerChoice) {
     playerChoice = choice;
@@ -65,16 +67,15 @@ function playBattle(playerChoice) {
   const choices = ['rock', 'paper', 'scissors'];
   const computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
-  // Show computer choice
+  // Show choices
   document.getElementById('computer-choice-label').textContent = `CPU chose: ${computerChoice.toUpperCase()}`;
-
-  // Display images
   document.getElementById('player-img').src = imageMap[playerChoice];
   document.getElementById('cpu-img').src = imageMap[computerChoice];
   document.getElementById('battle-scene').classList.remove('hidden');
 
-  let resultText = '';
-  let outcome = '';
+  // Determine outcome
+  let outcome;
+  let resultText;
 
   if (playerChoice === computerChoice) {
     resultText = "⚖️ It's a draw!";
@@ -98,35 +99,34 @@ function playBattle(playerChoice) {
   saveGameResult(outcome);
 }
 
-// Updates score display
+// Update score display
 function updateScores() {
   document.getElementById('player-score').textContent = playerScore;
   document.getElementById('computer-score').textContent = computerScore;
 }
 
-// Enable/disable choice buttons
+// Enable or disable choice buttons
 function enableButtons(enable) {
   document.getElementById('rock-btn').disabled = !enable;
   document.getElementById('paper-btn').disabled = !enable;
   document.getElementById('scissors-btn').disabled = !enable;
 }
 
-// Save game result to localStorage
+// Save result to localStorage
 function saveGameResult(result) {
   const history = JSON.parse(localStorage.getItem('rpsHistory')) || [];
 
   history.push({
-    result: result, // win | lose | draw
+    result,
     date: new Date().toISOString()
   });
 
   localStorage.setItem('rpsHistory', JSON.stringify(history));
 }
 
-// Load and display stats in console
+// Load history stats on console (optional)
 function loadHistoryStats() {
   const history = JSON.parse(localStorage.getItem('rpsHistory')) || [];
-
   const wins = history.filter(h => h.result === 'win').length;
   const losses = history.filter(h => h.result === 'lose').length;
   const draws = history.filter(h => h.result === 'draw').length;
@@ -134,20 +134,20 @@ function loadHistoryStats() {
   console.log(`📊 Stats — Played: ${history.length}, Wins: ${wins}, Losses: ${losses}, Draws: ${draws}`);
 }
 
-// Clear stored game history
+// Clear game history (optional)
 function resetHistory() {
   localStorage.removeItem('rpsHistory');
   console.log('🧹 History cleared.');
 }
 
-// Fix viewport height issues on mobile
+// Fix mobile viewport height
 function setTrueVH() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
 
-// Initialize on load
-window.onload = function () {
+// Initialize on page load
+window.onload = () => {
   loadHistoryStats();
 };
 

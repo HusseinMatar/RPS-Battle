@@ -1,8 +1,14 @@
-/* RESET & GLOBAL */
+/* ========== RESET & GLOBAL ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 html {
@@ -16,11 +22,10 @@ body {
   text-align: center;
   overflow: hidden;
   height: 100%;
-  touch-action: manipulation; /* Ensures tap behavior stays smooth */
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* FIX DYNAMIC HEIGHT */
+/* ========== LAYOUT ========== */
 .game-container {
   display: flex;
   flex-direction: column;
@@ -29,15 +34,8 @@ body {
   padding: 1rem;
 }
 
-/* SECTIONS */
 .side {
   padding: 0.5rem;
-}
-
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #ffe600;
 }
 
 .computer {
@@ -51,14 +49,21 @@ h2 {
 }
 
 .center {
-  padding: .5rem;
   flex-grow: 1;
+  padding: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
 }
 
-/* COUNTDOWN + RESULT */
+/* ========== HEADINGS ========== */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffe600;
+}
+
+/* ========== COUNTDOWN & RESULT ========== */
 #countdown {
   font-size: 3rem;
   font-weight: bold;
@@ -72,12 +77,13 @@ h2 {
   margin: 0.8rem 0;
 }
 
-/* SCORE + BUTTON */
+/* ========== SCOREBOARD ========== */
 .scoreboard {
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
+/* ========== START BUTTON ========== */
 #start-btn {
   font-size: 2rem;
   padding: 0.6rem 1.4rem;
@@ -86,13 +92,14 @@ h2 {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 #start-btn:hover {
   background-color: #ff6347;
 }
 
-/* PLAYER CHOICE BUTTONS */
+/* ========== CHOICE BUTTONS ========== */
 .buttons {
   display: flex;
   justify-content: center;
@@ -107,18 +114,19 @@ h2 {
   border-radius: 0.5rem;
   background-color: #ffffff22;
   cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .buttons button:hover {
   background-color: #ffffff55;
 }
 
-/* ======= FIXED: BATTLE SIDE-BY-SIDE ======= */
+/* ========== BATTLE DISPLAY ========== */
 .battle-scene {
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-evenly;
+  align-items: center;
   margin: 0.8rem 0;
   animation: zoomIn 0.5s ease-out;
   flex-wrap: nowrap;
@@ -156,12 +164,12 @@ h2 {
   width: 20%;
 }
 
-/* HIDDEN STATE */
+/* ========== HIDDEN STATE ========== */
 .hidden {
   display: none;
 }
 
-/* ANIMATIONS */
+/* ========== ANIMATIONS ========== */
 @keyframes pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.1); opacity: 0.7; }
@@ -177,7 +185,7 @@ h2 {
   to { transform: scale(1); opacity: 1; }
 }
 
-/* MOBILE RESPONSIVE */
+/* ========== RESPONSIVE (MOBILE) ========== */
 @media (max-width: 480px) {
   html {
     font-size: 14px;
@@ -208,14 +216,4 @@ h2 {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
-}
-
-/* Disable text/image selection globally */
-* {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-  touch-action: manipulation; /* Prevent double-tap zoom on buttons */
 }

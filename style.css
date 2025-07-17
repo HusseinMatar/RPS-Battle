@@ -34,18 +34,24 @@ body {
   padding: 0.5rem;
 }
 
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffe600;
+}
+
 .computer {
   background: rgba(255, 255, 255, 0.05);
-  border-bottom: 0.15rem solid #00c0ff;
+  border-bottom: 1rem solid #00c0ff;
 }
 
 .player {
   background: rgba(255, 255, 255, 0.05);
-  border-top: 0.15rem solid #2ecc40;
+  border-top: 1rem solid #2ecc40;
 }
 
 .center {
-  padding: 0.5rem;
+  padding: .5rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -54,13 +60,13 @@ body {
 
 /* COUNTDOWN + RESULT */
 #countdown {
-  font-size: 2.4rem;
+  font-size: 3rem;
   font-weight: bold;
   animation: pulse 1s infinite;
 }
 
 #result {
-  font-size: 1.3rem;
+  font-size: 3rem;
   color: #ffe600;
   font-weight: bold;
   margin: 0.8rem 0;
@@ -68,12 +74,12 @@ body {
 
 /* SCORE + BUTTON */
 .scoreboard {
-  font-size: 1rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
 #start-btn {
-  font-size: 1rem;
+  font-size: 2rem;
   padding: 0.6rem 1.4rem;
   background-color: #ff4136;
   color: white;
@@ -95,7 +101,7 @@ body {
 }
 
 .buttons button {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   padding: 0.6rem 1rem;
   border: none;
   border-radius: 0.5rem;
@@ -126,8 +132,8 @@ body {
 }
 
 .fighter img {
-  width: 5.5rem;
-  height: 5.5rem;
+  width: 8.5rem;
+  height: 8.5rem;
   border-radius: 0.5rem;
   border: 0.2rem solid white;
   background: rgba(255, 255, 255, 0.2);
@@ -135,7 +141,7 @@ body {
 }
 
 .label {
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   color: #ffe600;
@@ -143,7 +149,7 @@ body {
 }
 
 .vs {
-  font-size: 1.4rem;
+  font-size: 3.4rem;
   font-weight: bold;
   color: #ffe600;
   animation: flash 1s infinite;
